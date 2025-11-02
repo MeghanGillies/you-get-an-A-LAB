@@ -1,0 +1,81 @@
+This document covers how my Gradebook Class works,
+and how you should utilize it.
+
+With the Gradebook class, you can do the following:
+-   Add students
+-   Add assignments
+-   Add grades
+-   Return a formatted report to print
+
+
+How to use the add_student() method:
+-   When you add a student, you need to include the following:
+    -   First name
+    -   Last name
+    -   Student ID
+-   Each student's ID needs to be unique
+    -   If you try to add a student with an ID that has
+        already been used, it will throw an exception
+
+How does add_student() work?
+-   When you call add_student(), it first checks if the ID
+    entered isn't already in the map of students (which are
+    key/value pairs of IDs / *student objects)
+    -   If the ID is in the map, it throws an exception
+    -   If that ID is unique, then it will use the entered
+        arguments to construct a new student object on the heap
+-   Then it will add a pointer to that student object to the
+    map of students
+
+
+How to use the add_assignment() method:
+-   When you add an assignment you need to give it a name
+    and a max grade value
+-   If the assignment name has already been used, then it
+    will throw an exception
+
+How does the add_assignment() method work?
+-   When you add an assignment, it first checks if the
+    assignment name is already in the map of assignments
+    (key/value pairs are names / *assignment objects)
+    -   If the name is in the map, then it throws an exception
+    -   If the name hasn't been used before, then it creates a
+        new Assignment object on the heap
+-   Then it adds a pointer to that assignment to the map
+    of Assignments
+
+
+How to use the add_grade() method:
+-   When you add a grade, you need to include the following:
+    -   Assignment name
+    -   Student ID
+    -   Grade
+-   If you do one of the following, it will throw an exception:
+    -   Enter a Assignment Name that doesn't exist
+    -   Enter a Student ID that doesn't exist
+    -   Enter a negative grade
+
+How does the add_grade() method work?
+-   After validating that the entered assignment name and
+    student ID do exist in their respective maps, it calls
+    the add_grade() method on the assignment object with the
+    matching name.
+-   The assignment's add_grade() method then validates that
+    the grade is not negative
+-   Then it adds the grade to a map of Grades (which key/value
+    pairs are student IDs / grades)
+
+
+The report() method returns a formatted string to use for
+printing the gradebook to the screen.
+-   It still works without any assignments or student added.
+    In this case, it will just print the beginning of the
+    header.
+-   Grades that have not been entered will print "N/A" instead
+    of a grade value
+
+
+As you can see, the Gradebook class is built so that when
+you utilize it, you don't have to think about the Student or
+Assignment objects that are working in the background. You
+only need to call methods on the Gradebook itself to use it.
